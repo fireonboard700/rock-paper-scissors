@@ -14,38 +14,54 @@ function getHumanChoice() {
     return choice;
 }
 
-function playGame() {
-    function playRound(humanChoice, computerChoice) {
-        humanChoice = humanChoice.toLowerCase();
-        computerChoice = computerChoice.toLowerCase();
-        result = "";
-        // this logic check sucks - but I do not immediately see a better way to do this.
-        if (humanChoice === computerChoice) {
-            result = "draw";
-        } else if (
-            (humanChoice === "rock" && computerChoice == "scissors") ||
-            (humanChoice === "paper" && computerChoice == "rock") ||
-            (humanChoice === "scissors" && computerChoice == "paper")
-        ) {
-            result = "win";
-            humanScore += 1;
-        } else {
-            result = "lose";
-            computerScore += 1;
-        }
-
-        console.log(
-            `result: ${result}\nhuman choice: ${humanChoice}\ncomputer choice: ${computerChoice}`
-        );
-        console.log(`score:\nhuman: ${humanScore}\ncomputer: ${computerScore}`);
+function playRound(humanChoice, computerChoice) {
+    humanChoice = humanChoice.toLowerCase();
+    computerChoice = computerChoice.toLowerCase();
+    result = "";
+    // this logic check sucks - but I do not immediately see a better way to do this.
+    if (humanChoice === computerChoice) {
+        result = "draw";
+    } else if (
+        (humanChoice === "rock" && computerChoice == "scissors") ||
+        (humanChoice === "paper" && computerChoice == "rock") ||
+        (humanChoice === "scissors" && computerChoice == "paper")
+    ) {
+        result = "win";
+        humanScore += 1;
+    } else {
+        result = "lose";
+        computerScore += 1;
     }
 
-    let humanScore = 0;
-    let computerScore = 0;
-
-    for (let i = 0; i < 5; i++) {
-        let humanChoice = getHumanChoice();
-        let computerChoice = getComputerChoice();
-        playRound(humanChoice, computerChoice);
-    }
+    console.log(
+        `result: ${result}\nhuman choice: ${humanChoice}\ncomputer choice: ${computerChoice}`
+    );
+    console.log(`score:\nhuman: ${humanScore}\ncomputer: ${computerScore}`);
 }
+
+let humanScore = 0;
+let computerScore = 0;
+
+// dumb way of doing this, but do you have a better idea?
+
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+
+rock.addEventListener("click", () => {
+    let humanChoice = "rock";
+    let computerChoice = getComputerChoice();
+    playRound(humanChoice, computerChoice);
+});
+
+paper.addEventListener("click", () => {
+    let humanChoice = "paper";
+    let computerChoice = getComputerChoice();
+    playRound(humanChoice, computerChoice);
+});
+
+scissors.addEventListener("click", () => {
+    let humanChoice = "scissors";
+    let computerChoice = getComputerChoice();
+    playRound(humanChoice, computerChoice);
+});
