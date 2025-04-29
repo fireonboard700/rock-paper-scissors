@@ -35,33 +35,18 @@ function playRound(humanChoice, computerChoice) {
         computerScore += 1;
     }
 
-    // also dumb.
-    div.textContent = `result: ${result}\nhuman choice: ${humanChoice}\ncomputer choice: ${computerChoice}\nscore:\nhuman: ${humanScore}\ncomputer: ${computerScore}`;
+    // this is unreadable.
+    div.textContent = `result: ${result} human choice: ${humanChoice} computer choice: ${computerChoice}human: ${humanScore} computer: ${computerScore}`;
 }
 
 let humanScore = 0;
 let computerScore = 0;
 
-// dumb way of doing this, but do you have a better idea?
+const choices = ["rock", "paper", "scissors"];
 
-const rock = document.querySelector("#rock");
-const paper = document.querySelector("#paper");
-const scissors = document.querySelector("#scissors");
-
-rock.addEventListener("click", () => {
-    let humanChoice = "rock";
-    let computerChoice = getComputerChoice();
-    playRound(humanChoice, computerChoice);
-});
-
-paper.addEventListener("click", () => {
-    let humanChoice = "paper";
-    let computerChoice = getComputerChoice();
-    playRound(humanChoice, computerChoice);
-});
-
-scissors.addEventListener("click", () => {
-    let humanChoice = "scissors";
-    let computerChoice = getComputerChoice();
-    playRound(humanChoice, computerChoice);
+choices.forEach((choice) => {
+    const btn = document.querySelector(`#${choice}`);
+    btn.addEventListener("click", () => {
+        playRound(choice, getComputerChoice());
+    });
 });
