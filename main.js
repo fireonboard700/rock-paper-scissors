@@ -14,6 +14,8 @@ function getHumanChoice() {
     return choice;
 }
 
+const div = document.querySelector("#results");
+
 function playRound(humanChoice, computerChoice) {
     humanChoice = humanChoice.toLowerCase();
     computerChoice = computerChoice.toLowerCase();
@@ -33,10 +35,8 @@ function playRound(humanChoice, computerChoice) {
         computerScore += 1;
     }
 
-    console.log(
-        `result: ${result}\nhuman choice: ${humanChoice}\ncomputer choice: ${computerChoice}`
-    );
-    console.log(`score:\nhuman: ${humanScore}\ncomputer: ${computerScore}`);
+    // also dumb.
+    div.textContent = `result: ${result}\nhuman choice: ${humanChoice}\ncomputer choice: ${computerChoice}\nscore:\nhuman: ${humanScore}\ncomputer: ${computerScore}`;
 }
 
 let humanScore = 0;
